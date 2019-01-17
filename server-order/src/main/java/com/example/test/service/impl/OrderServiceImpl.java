@@ -3,14 +3,12 @@ package com.example.test.service.impl;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fescar.core.context.RootContext;
-import com.example.test.mapper.OrderMapper;
-import com.example.test.model.Order;
 import com.example.test.service.OrderService;
 import com.example.test.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -26,12 +24,13 @@ import java.util.Date;
 public class OrderServiceImpl implements OrderService {
 
 
-    @Autowired
-    private OrderMapper  orderMapper;
 
 
     @Reference
     PayService  payService;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
 
     @Override
@@ -50,10 +49,8 @@ public class OrderServiceImpl implements OrderService {
 
 
     private  void aa(String userName){
-        Order  order = new Order();
-        order.setCreateTime(new Date());
-        order.setUserName(userName);
-        orderMapper.saveOrder(order);
+        jdbcTemplate.update("INSERT INTO `t_order` (  `user_name`) VALUES ( ? ) ; " , userName );
+
     }
 
 
