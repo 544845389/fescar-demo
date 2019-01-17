@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @GlobalTransactional(timeoutMills = 300000, name = "dubbo-demo-tx")
+//    @GlobalTransactional(timeoutMills = 300000, name = "dubbo-demo-tx")
     @Transactional
     public String addUser(String userName) {
         System.out.println("----->"+RootContext.getXID());
