@@ -1,6 +1,6 @@
-package com.example.pay.mapper;
+package com.example.test.mapper;
 
-import com.example.pay.model.Pay;
+import com.example.test.model.Pay;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

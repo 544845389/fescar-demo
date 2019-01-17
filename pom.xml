@@ -8,6 +8,13 @@
     <artifactId>fescar-demo</artifactId>
     <version>1.0.0</version>
 
+    <modules>
+
+        <module>server-order</module>
+        <module>server-pay</module>
+        <module>server-user</module>
+
+    </modules>
 
 
     <parent>
@@ -65,10 +72,10 @@
         </dependency>
 
         <dependency>
-                 <groupId>com.alibaba.spring.boot</groupId>
-                 <artifactId>dubbo-spring-boot-starter</artifactId>
-                 <version>1.0.1</version>
-        </dependency>
+            <groupId>com.alibaba.spring.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>2.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.zookeeper</groupId>

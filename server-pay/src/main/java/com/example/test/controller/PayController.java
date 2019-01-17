@@ -1,6 +1,6 @@
-package com.example.pay.controller;
+package com.example.test.controller;
 
-import com.example.pay.service.PayService;
+import com.example.test.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

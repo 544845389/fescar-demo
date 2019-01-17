@@ -1,11 +1,17 @@
 package com.example.test.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fescar.core.context.RootContext;
 import com.example.test.mapper.OrderMapper;
 import com.example.test.model.Order;
 import com.example.test.service.OrderService;
+import com.example.test.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -15,8 +21,8 @@ import java.util.Date;
  * @company codingApi
  * @description
  */
-@Service
-@com.alibaba.dubbo.config.annotation.Service
+@Service(interfaceClass = OrderService.class)
+@Component
 public class OrderServiceImpl implements OrderService {
 
 
@@ -24,17 +30,30 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper  orderMapper;
 
 
+    @Reference
+    PayService  payService;
+
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean addOrder(String userName) {
+        System.out.println("----->"+RootContext.getXID());
+        aa(userName);
+
+        payService.addPay(userName);
+
+        if(StringUtils.isEmpty(userName)){
+            throw  new NullPointerException("pay 异常");
+        }
+        return true;
+    }
+
+
+    private  void aa(String userName){
         Order  order = new Order();
         order.setCreateTime(new Date());
         order.setUserName(userName);
         orderMapper.saveOrder(order);
-
-        if(ObjectUtils.isEmpty(userName)){
-            throw  new NullPointerException("用户名称为空");
-        }
-        return true;
     }
 
 
