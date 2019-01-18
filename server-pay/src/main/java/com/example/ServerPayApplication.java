@@ -10,14 +10,18 @@ import org.springframework.context.annotation.Bean;
 @EnableDubboConfiguration
 public class ServerPayApplication {
 
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(ServerPayApplication.class, args);
 	}
+
 
 	@Bean
 	public GlobalTransactionScanner getGlobalTransactionScanner(){
 		return 	new GlobalTransactionScanner("server-pay" , "my_test_tx_group");
 	}
+
 
 }
 

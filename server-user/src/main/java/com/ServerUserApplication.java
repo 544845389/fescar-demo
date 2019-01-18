@@ -15,6 +15,7 @@ public class ServerUserApplication {
 	}
 
 
+
 	@Bean
 	public GlobalTransactionScanner getGlobalTransactionScanner(){
 		return 	new GlobalTransactionScanner("server-user" , "my_test_tx_group");
