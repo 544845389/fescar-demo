@@ -7,6 +7,7 @@
     <groupId>fescar-demo</groupId>
     <artifactId>fescar-demo</artifactId>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
 
     <modules>
 
@@ -55,14 +56,14 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.0.19</version>
+            <version>1.1.12</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
+            <version>5.1.35</version>
         </dependency>
 
 
@@ -72,17 +73,6 @@
             <version>2.0.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.4.9</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.1</version>
-        </dependency>
 
 
         <dependency>

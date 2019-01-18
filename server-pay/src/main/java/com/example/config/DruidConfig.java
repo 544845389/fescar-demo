@@ -3,6 +3,7 @@ package com.example.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.fescar.rm.datasource.DataSourceProxy;
+import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -64,16 +65,7 @@ public class DruidConfig {
     @Value("${spring.datasource.logSlowSql}")
     private String logSlowSql;
 
-    @Bean
-    public ServletRegistrationBean druidServlet() {
-        ServletRegistrationBean reg = new ServletRegistrationBean();
-        reg.setServlet(new StatViewServlet());
-        reg.addUrlMappings("/druid/*");
-        reg.addInitParameter("loginUsername", username);
-        reg.addInitParameter("loginPassword", password);
-        reg.addInitParameter("logSlowSql", logSlowSql);
-        return reg;
-    }
+
 
     @Bean
     public DruidDataSource druidDataSource() {
@@ -114,6 +106,11 @@ public class DruidConfig {
     @Bean
     public JdbcTemplate getJdbcTemplate(){
         return new  JdbcTemplate(getDataSourceProxy());
+    }
+
+    @Bean
+    public GlobalTransactionScanner getGlobalTransactionScanner(){
+        return 	new GlobalTransactionScanner("server-pay" , "my_test_tx_group");
     }
 
 

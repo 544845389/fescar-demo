@@ -3,13 +3,13 @@ package com.example.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.fescar.rm.datasource.DataSourceProxy;
+import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
@@ -108,7 +108,7 @@ public class DruidConfig {
 
     @Bean
     public DataSourceProxy getDataSourceProxy(){
-        return new DataSourceProxy(druidDataSource());
+       return new DataSourceProxy(druidDataSource());
     }
 
     @Bean
@@ -116,5 +116,10 @@ public class DruidConfig {
         return new  JdbcTemplate(getDataSourceProxy());
     }
 
+
+    @Bean
+    public GlobalTransactionScanner getGlobalTransactionScanner(){
+        return 	new GlobalTransactionScanner("server-pay" , "my_test_tx_group");
+    }
 
 }

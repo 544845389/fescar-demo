@@ -5,6 +5,7 @@ import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableDubboConfiguration
@@ -15,10 +16,7 @@ public class ServerOrderApplication {
 	}
 
 
-	@Bean
-	public GlobalTransactionScanner getGlobalTransactionScanner(){
-		return 	new GlobalTransactionScanner("server-order" , "my_test_tx_group");
-	}
+
 
 
 }

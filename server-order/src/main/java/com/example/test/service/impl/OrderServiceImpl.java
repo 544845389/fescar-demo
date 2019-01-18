@@ -25,8 +25,7 @@ public class OrderServiceImpl implements OrderService {
 
 
 
-
-    @Reference
+    @Reference(timeout = 3000)
     PayService  payService;
 
     @Autowired
@@ -41,15 +40,15 @@ public class OrderServiceImpl implements OrderService {
 
         payService.addPay(userName);
 
-        if(StringUtils.isEmpty(userName)){
-            throw  new NullPointerException("pay 异常");
+        if(userName.equals("2")){
+          int a =   1 / 0;
         }
         return true;
     }
 
 
     private  void aa(String userName){
-        jdbcTemplate.update("INSERT INTO `t_order` (  `user_name`) VALUES ( ? ) ; " , userName );
+        jdbcTemplate.update("UPDATE  `t_order` SET  `user_name` = 'order' WHERE `id` = 1 "  );
 
     }
 
