@@ -97,6 +97,11 @@ public class DruidConfig {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        try {
+            datasource.init();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return datasource;
     }
 
