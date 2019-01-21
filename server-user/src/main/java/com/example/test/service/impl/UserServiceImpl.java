@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    @GlobalTransactional(timeoutMills = 300000, name = "dubbo-demo-tx")
     @Transactional
+    @GlobalTransactional(timeoutMills = 300000, name = "dubbo-demo-tx")
     public String addUser(String userName) {
         System.out.println("----->"+ RootContext.getXID());
 
