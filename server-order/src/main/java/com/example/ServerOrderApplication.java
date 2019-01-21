@@ -16,7 +16,6 @@ import java.sql.SQLException;
 @Configuration
 @SpringBootApplication
 @EnableDubboConfiguration
-@EnableTransactionManagement
 public class ServerOrderApplication {
 
 	public static void main(String[] args) {
@@ -24,10 +23,7 @@ public class ServerOrderApplication {
 	}
 
 
-	@Bean
-	public GlobalTransactionScanner getGlobalTransactionScanner(){
-		return 	new GlobalTransactionScanner("server-order" , "my_test_tx_group");
-	}
+
 
 	@Bean
 	public DataSourceProxy dataSource() {

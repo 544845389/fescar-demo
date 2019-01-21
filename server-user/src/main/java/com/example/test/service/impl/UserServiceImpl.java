@@ -24,12 +24,12 @@ import java.util.Date;
 public class UserServiceImpl implements UserService {
 
 
-    @Reference
+    @Reference(timeout = 3000)
     OrderService orderService;
-
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
 
     @Override
     @Transactional
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public String addUser(String userName) {
         System.out.println("----->"+ RootContext.getXID());
 
-        jdbcTemplate.update("INSERT INTO `t_user` (  `user_name` ) VALUES ( ? ) ; " , userName  );
+        jdbcTemplate.update("UPDATE  `fescar-user`.`t_user` SET  `user_name` = 'user_name' WHERE `id` = 1 "  );
 
 
         orderService.addOrder(userName);

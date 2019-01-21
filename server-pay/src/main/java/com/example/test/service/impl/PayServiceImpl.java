@@ -8,9 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-
-//import com.alibaba.fescar.core.context.RootContext;
 
 /**
  * @author 侯存路
@@ -28,11 +25,11 @@ public class PayServiceImpl implements PayService {
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public String addPay(String userName) {
         System.out.println("----->"+ RootContext.getXID());
 
-        jdbcTemplate.update("INSERT INTO `t_pay` (  `user_name` ) VALUES ( ? ) ; " , userName );
+        jdbcTemplate.update("UPDATE  `t_pay` SET  `user_name` = 'pay' WHERE `id` = 1 "  );
 
         return "123";
     }

@@ -8,12 +8,10 @@ import com.alibaba.fescar.spring.annotation.GlobalTransactionScanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.SQLException;
 
-@Configuration
 @SpringBootApplication
 @EnableDubboConfiguration
 public class ServerUserApplication {
@@ -28,6 +26,8 @@ public class ServerUserApplication {
 	public GlobalTransactionScanner getGlobalTransactionScanner(){
 		return 	new GlobalTransactionScanner("server-user" , "my_test_tx_group");
 	}
+
+
 
 
 	@Bean
